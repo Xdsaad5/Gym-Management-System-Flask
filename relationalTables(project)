@@ -1,0 +1,46 @@
+CREATE TABLE trainer (
+    name VARCHAR(50) NOT NULL,
+    email varchar(50) unique not null ,
+    password varchar(50) not null,
+    speciality VARCHAR(50),
+    experience varchar(10),
+    participated_in_any_competition varchar(500),
+    consult_fee NUMERIC(10,2) NOT NULL,
+    mobile_number VARCHAR(11) NOT NULL,
+    CONSTRAINT pk_trainer PRIMARY KEY (email)
+);
+create table trainerImages(
+id INT not null auto_increment,
+email varchar(50) not null,
+image_url varchar(500),
+constraint pk_trainerImages primary key(id),
+constraint fk_trainerImages foreign key(email)
+references trainer(email)
+);
+create table trainerVideos(
+id INT not null auto_increment,
+email varchar(50) not null,
+video_url varchar(500),
+constraint pk_trainerVideos primary key(id),
+constraint fk_trainerVideos foreign key(email)
+references trainer(email)
+);
+CREATE TABLE trainee (
+    username VARCHAR(50) unique NOT NULL,
+	email varchar(50) unique not null,
+    password varchar(20) not null,
+    age NUMERIC(3 , 0 ) NOT NULL,
+    mobile_number VARCHAR(11) NOT NULL,
+    assigned_trainer VARCHAR(50),
+    CONSTRAINT pk_trainee PRIMARY KEY (username),
+    CONSTRAINT fk_assgn_trainer FOREIGN KEY (assigned_trainer)
+        REFERENCES trainer (email)
+);
+create table traineeImages(
+id INT not null auto_increment,
+username varchar(50) not null,
+image_url varchar(500),
+constraint pk_traineeImages primary key(id),
+constraint fk_traineeImages foreign key(username)
+references trainee(username)
+);
