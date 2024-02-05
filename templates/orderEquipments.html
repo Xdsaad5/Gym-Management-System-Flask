@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <!-- <script src="/js/script.js"></script> -->
+     <link rel="stylesheet" href="/static/style1.css">
+     <link rel="stylesheet" href="/static/styling.css">
+    <title>Order Equipments</title>
+    <style>
+        .container{
+            width: 100%;
+            height: auto;
+            background: black;
+            /*flex*/
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            flex-flow: wrap;
+        }
+        .box{
+            width: 20%;
+            height: 300px;
+            background: black;
+            margin:20px;
+            box-sizing: border-box;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body style="background-color: black;" >
+<header class="header" style="background-color: darkred">
+    <a href="#" class="logo"> <span>FIRE</span>HOUSE </a>
+    <div id="menu-btn" class="fas fa-bars"></div>
+    <nav class="navbar">
+            <a href="/traineeHome">Home</a>
+            <a href="/logoutTrainee">Logout</a>
+        <div class="icons" style="float: right;position: relative;top: 10px;left: 10px;color: whitesmoke;font-size: 25px;">
+            <div class="fas fa-shopping-cart" id="cart-btn"></div>
+        </div>
+    </nav>
+    <div class="cart-items-container">
+            <div id="cart">
+            </div>
+            <h7 id="total" style="color: white" ></h7>
+            <h7 id="success" style="color:white;"></h7>
+            <button class="btn" id="order" >Order now</button>
+        </div>
+<!--</header>-->
+<!--<header class="header">-->
+</header>
+<div class="container"  >
+    {% for item in data%}
+        <div style=" width:200px;height: 510px;background: none;color:darkred;margin:20px; font-size:25px;margin-top: 70px;" >
+                <img src={{item['imageUrl']}}   alt="" style="height: 300px;width: 130%;">
+                    <p >{{item['name']}}</p>
+                    <p>{{item['quantity']}}</p>
+                    <p>{{item['price']}}</p>
+                    <p>{{item['weight']}}</p>
+            <button  style="font-size: medium; width: 110%;color: darkred;cursor: pointer;font-weight: bold" id="{{item['name']}}#{{item['price']}}#{{item['imageUrl']}}"
+                            onclick="myFunction(this)">Add to Cart</button>
+        </div>
+    {% endfor %}
+</div>
+<div id="after" style="background-color: black;display: none; height: 1400px;color: white" >
+</div>
+</body>
+
+<script>
+
+    let cartItem = document.querySelector('.cart-items-container');
+
+    document.querySelector('#cart-btn').onclick = () => {
+        cartItem.classList.toggle('active');
+    }
+    const myArray = []
+    var total = 0
+    function myFunction(obj) {
+        var info = $(obj).attr("id")
+        var info = info.split('#')
+        var name = info[0]
+        var price = info[1]
+        var img = info[2]
+        var priceInIntteger = info[1].split('$')
+        console.log(priceInIntteger[0])
+        total = total + Number(priceInIntteger[0])
+        myArray.push(name);
+        // document.getElementById('cart').style.display = 'block'
+        $("#cart").append(`   
+        <div class="cart-item">
+            <img src="${img}"" alt="">
+            <div class="content" >
+                <h3>
+        Name:${name}</h3>
+                <div class="price">${price}/-</div>
+
+            </div>
+        </div>
+       
+        `)
+    console.log("total",total)
+        $("#total").text("Total will become: "+total.toString())
+    }
+
+        $("#order").on('click', function () {
+            console.log(myArray)
+            console.log(typeof myArray)
+
+            myData=JSON.stringify(myArray)
+            console.log(typeof myArray)
+                $.ajax({
+                    url: '/api/placeorderEquipments/' + myData,
+                    type: "PUT",
+                    data:myData,
+                    dataType:'json',
+                    contentType:'application/json',
+                    success: function (result) {
+                        // setTimeout(print("ahsan"), 5000);
+                        document.getElementById('total').style.display='none'
+                        $("#success").text(result)
+                        console.log(result)
+                    }
+
+            });
+        })
+
+    window.onscroll = () => {
+        cartItem.classList.remove('active');
+    }
+</script>
+
+</html>
+
+
+
+
+
+

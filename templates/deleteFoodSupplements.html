@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+              <!-- Latest compiled and minified CSS -->
+(
+          <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+          <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+             <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+
+          <script
+      src="http://code.jquery.com/jquery-3.3.1.js"
+      integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+      crossorigin="anonymous"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+        <link rel="stylesheet" href="/static/styling.css">
+        <title>delete Food Supplements</title>
+    <style>
+        .container{
+            width: 100%;
+            height: auto;
+            background: black;
+            /*flex*/
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            flex-flow: wrap;
+        }
+        .box{
+            width: 20%;
+            height: 300px;
+            background: black;
+            margin:20px;
+            box-sizing: border-box;
+            font-size: 20px;
+        }
+        </style>
+</head>
+
+<body style="background-color: black">
+<header class="header">
+
+    <a href="#" class="logo"> <span>FIRE</span>HOUSE </a>
+
+    <div id="menu-btn" class="fas fa-bars"></div>
+
+    <nav class="navbar">
+            <a href="/adminHome">Home</a>
+            <a  href="/logoutAdmin">Logout</a>
+    </nav>
+</header>
+<div class="container" style="margin-top: 70px;">
+    {% for item in data%}
+        <div style=" width:200px;height: 510px;background: none;color:darkred;margin:20px; font-size:25px;" >
+                <img src={{item['imageUrl']}}   alt="" style="height: 300px;width: 130%;">
+                    <p >{{item['name']}}</p>
+                    <p>{{item['quantity']}}</p>
+                    <p>{{item['price']}}</p>
+                    <p>{{item['weight']}}</p>
+        <button id="{{item['name']}}" type="button" style="font-size: medium; width: 110%;color: darkred;cursor: pointer;font-weight: bold" onclick="myFunction(this)">Remove.</button>
+        </div>
+    {% endfor %}
+</div>
+<p id="status"></p>
+</body>
+<script>
+    function myFunction(obj) {
+        console.log('I am Log.')
+        var name = $(obj).attr("id")
+        console.log(name)
+        $.ajax({
+            type: "DELETE",
+            url: '/api/foodSuplementApi/' + name,
+            success: function (result) {
+                console.log('Deleted.')
+                document.getElementById("status").innerText = "Succesfully Deleted."
+            }
+        })
+    }
+
+</script>
+
+</html>

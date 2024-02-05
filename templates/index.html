@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FireHouse Services</title>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="/static/style.css">
+        <link rel="stylesheet" href="/static/styling.css">
+
+</head>
+<style>
+    .background-image{
+        background-image: url('/static/image/img11.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: contain;
+        background-size: cover;
+        backdrop-filter: blur(5px);
+
+    }
+    .bg2{
+        background-image: url(/static/image/img1.jpeg);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: contain;
+        background-size: cover;
+        backdrop-filter: blur(5px);
+        width: 100%;
+    }
+</style>
+<body>
+    
+<!-- header section starts  -->
+
+<header class="header" >
+
+    <a href="#" class="logo"> <span>FIRE</span>HOUSE </a>
+
+    <div id="menu-btn" class="fas fa-bars"></div>
+
+    <nav class="navbar">
+         <nav class="navbar">
+        <a href="/">Home</a>
+        <a href="/features">Features</a>
+        <a href="/about us">About</a>
+        <a href="/contactus">Contact</a>
+    </nav>
+    </nav>
+</header>
+
+<!-- header section ends -->
+
+<!-- home section starts  -->
+
+<section class="home bg2" id="home" style="text-align: center">
+    <div class="content">
+        <h3 class="home__subtitle" >Build Up yourself now:</h3>
+        <h3 class="home__title" id="text">Firehouse</h3>
+        <p class="home__description">one of the top gyms of world with experianced trainer.You can get training and buy supplements and gym equipments.</p>
+        <a href="/loginAsAdmin" class="btn">Admin Log-in</a>
+    </div>
+</section>
+
+<!-- home section ends -->class="heading section__subtitle"
+<section class="service-sec background-image" id="services" >
+
+    <div class="row">
+        <div class="card" style="background:rgb(112,1,25);">
+            <i class="fa-solid fa-compass-drafting"></i>
+            <h4>Quality Equipment</h4>
+            <a href="/displayEquipments" style="color: darkred">Read More</a>
+        </div>
+        <div class="card" style="background:#d09f61;">
+            <i class="fa-solid fa-person-running"></i>
+            <h4>Food Supplements</h4>
+            <a href="/displayFoodSupplements" style="color: darkred">Read More</a>
+        </div>
+        <div class="card" style="background:aquamarine;">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <h4>Join AsExpert Trainer?</h4>
+            <a href="/registerAsTrainer" style="color: darkred">Read More</a>
+        </div>
+        <div class="card" style="background-color: #9d370c;">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <h4>Join now?</h4>
+            <a href="/registerTrainee" style="color: darkred">Read More</a>
+        </div>
+        <div class="card" style="background:rgb(177, 53, 53);">
+            <i class="fa-solid fa-headset"></i>
+            <h4>Trainee Login</h4>
+            <a href="/loginAsTrainee" style="color: darkred">Read More</a>
+        </div>
+         <div class="card" style="background:rgb(177, 53, 53);">
+            <i class="fa-solid fa-headset"></i>
+            <h4>Trainer Login</h4>
+            <a href="/loginAsTrainer" style="color: darkred">Read More</a>
+        </div>
+    </div>
+</section>
+<!-- about section starts  -->
+
+
+<!-- blogs section ends -->
+
+<!-- footer section starts  -->
+
+<section class="footer">
+
+    <div class="share">
+        <a href=https://www.facebook.com/saadsultan17" class="fab fa-facebook-f"></a>
+        <a href="https://twitter.com/saad17mughal" class="fab fa-twitter"></a>
+        <a href="https://www.instagram.com/sipra_512/" class="fab fa-instagram"></a>
+    </div>
+
+    <div class="links">
+        <a href="/">home</a>
+        <a href="/features">Features</a>
+        <a href="/about us">about</a>
+        <a href="/contactus">contact</a>
+    </div>
+</section>
+<script src="js/script.js"></script>
+<script>
+    const text=document.getElementById('text');
+const prog="Build Up yourself with";
+const prog1="firehouse !";
+let idx=1;
+setInterval(write,150);
+function write(){
+    text.innerText=prog1.slice(0,idx);
+    idx++;
+    if(idx>prog.length)
+    {
+        idx=1;
+
+    }
+}
+</script>
+</body>
+</html>

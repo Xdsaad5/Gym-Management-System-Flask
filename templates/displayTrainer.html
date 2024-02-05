@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Display Trainer</title>
+          <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+      <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript chrome-extension://gighmmpiobklfepjocnamgkkbiglidom/browser-polyfill.js.map: -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+  	<script
+    src="http://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+   crossorigin="anonymous"></script>
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+    <link rel="stylesheet" href="/static/styling.css">
+    <link href="adminHome.html" rel="import" />
+</head>
+<style>
+    .bg{
+        opacity: 0.5;
+        background-position-x: left;
+  animation: mymove 5s infinite;
+    }
+</style>
+<body style="background-color: black;">
+<header class="header">
+
+    <a href="#" class="logo"> <span>FIRE</span>HOUSE </a>
+
+    <div id="menu-btn" class="fas fa-bars"></div>
+
+    <nav class="navbar" style="position: relative;right: 0px">
+            <a href="/adminHome">Home</a>
+            <a  href="/logoutAdmin">Logout</a>
+
+        </nav>
+</header>
+<div class="bg"
+        style="background-image: url('/static/image/img3.jpeg');background-repeat: no-repeat;background-size: cover;background-position: center;height: 600px; background-attachment: fixed">
+
+    </div>
+<table id="show" border="2">
+    <thead>
+            <tr id="row">
+                <th>Name</th>
+                <th>Speciality</th>
+                <th>Experience</th>
+                <th>Competition</th>
+                <th>Fee</th>
+                <th>Mobile Number</th>
+            </tr>
+        </thead>
+        <tfoot>
+           <tr>
+                <th>Name</th>
+                <th>Speciality</th>
+                <th>Experience</th>
+                <th>Competition</th>
+                <th>Fee</th>
+                <th>Mobile Number</th>
+            </tr>
+        </tfoot>
+
+</table>
+
+
+    <script>
+        let myData;
+        $(document).ready(function(){
+                 $.ajax({type:"GET",
+                     url:"/api/adminlogin",
+                     success: function(result){
+                         myData = result
+                         console.log(myData)
+                         if(myData !=null || myData != ""){
+                            table = $('#show').DataTable( {
+                                data: myData ,destroy: true,
+                                columns: [
+                                    { data: "name" },
+                                    { data: "speciality" },
+                                    { data: "experience" },
+                                    { data: "participated_in_any_competition" },
+                                    {data:"consult_fee"},
+                                    {data: "mobile_number"}
+                                ]
+                            } );
+                            console.log(myData)
+                        }
+
+                  }
+                 });
+        });
+
+
+    </script>
+
+
+</body>
+</html>

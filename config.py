@@ -1,0 +1,12 @@
+SECRET_KEY='SaadBsef20a032'
+HOST='localhost'
+USER='root'
+PASSWORD='saad'
+DATABASE='gym_database'
+UPLOADED_IMAGE="/static"
+ABSOLUTE_PATH="C:/Users/city/PycharmProjects/Web_Project/static"
+MONGODB_SETTINGS={
+    'host':'mongodb://localhost:27017/gym_products'
+}
+SENDER_EMAIL="xdsaad5@gmail.com"
+SENDER_PASSWORD="fltiqwzxnnjeluvw"

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+          <!-- Latest compiled and minified CSS -->
+
+      <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+  	<script
+  src="http://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <title>Show Equipments</title>
+    <link rel="icon" type="image/x-icon" href="/static/equipmentsPicture/icon2.jpeg">
+    <link href="../static/styleLogin.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/static/Admin.css">
+    <style>
+        .container{
+            width: 100%;
+            height: auto;
+            background: black;
+            /*flex*/
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            flex-flow: wrap;
+        }
+        .box{
+            width: 20%;
+            height: 300px;
+            background: black;
+            margin:20px;
+            box-sizing: border-box;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body style="background-color: black">
+<header class="" style="background-color: darkred;" >
+    <div class="header" style="background-color: darkred">
+        <a href="#" class="logo">
+            <i class="fas fa-dumbbell"></i>Fire<span style="color: red"> House</span>
+        </a>
+        <nav class="navbar">
+            <a href="/index">Home</a>
+            <button id="showeq" style="background-color: darkred; color: white; font-weight: bold;">Show Equipments</button>
+    </div>
+    </header>
+
+<div id="parent"  class="container" style="margin-top: 70px;"></div>
+
+<div id="status">
+    </div>
+   <script>
+        $(document).ready(function () {
+            $("#showeq").on('click', function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/api/equipments",
+                    success: function (result) {
+                        console.log(result)
+                        $(result).each(function (index, obj) {
+                            $("#parent").append(
+                                `
+                    <div style=" width:200px;height: 510px;background: none;color:darkred;margin:20px; font-size:25px;">
+                        <img src=${obj.imageUrl} alt="" style="height: 300px;width: 130%;">
+                        <h3>
+                            ${obj.name}
+                        </h3>
+                        <p>
+                             ${obj.quantity}
+                        </p>
+                        <p>
+                             ${obj.weight}
+                        </p>
+                         <p>
+                             ${obj.price}
+                        </p>
+                      <button type="button" style="font-size: medium; width: 110%;color: darkred;cursor: pointer;font-weight: bold" id='${obj.name}' onclick="myFunction(this)" >OrderNow</button>
+                    </div>
+                                `
+                            )
+                        });
+                    },
+                    error: function (xhr, res, msg) {
+                        console.log(xhr, res, msg)
+                    }
+                });
+            });
+        });
+        $("#status").append(
+           ` <p  id="submit" style="color: white" ></p>
+                                `
+                            )
+        function myFunction(obj)
+        {
+            $("#submit").text("please login first.")
+        }
+    </script>
+</body>
+
+</html>

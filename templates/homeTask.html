@@ -1,0 +1,60 @@
+<head>
+    <meta charset="UTF-8">
+          <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+      <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript chrome-extension://gighmmpiobklfepjocnamgkkbiglidom/browser-polyfill.js.map: -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+  	<script
+    src="http://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+   crossorigin="anonymous"></script>
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+        <link href="../static/styleLogin.css" rel="stylesheet"/>
+    <link href="adminHome.html" rel="import" />
+    <title>Home Task</title>
+</head>
+<body>
+<select name="province" id="option">
+    <option value="punjab">PUNJAB</option>
+    <option value="sindh">SINDH</option>
+    <option value="kpk">KPK</option>
+    <option value="bloachistan">Balochistan</option>
+</select>
+<button class="button" id="submit">Submit</button>
+<script>
+    $(document).ready(function(){
+        let str = "" ;
+        $("#submit").on('click',function(){
+            console.log('I am Console');
+            str = $("#option").val()
+            console.log(str);
+            //str =JSON.stringify(str);
+            console.log(typeof str);
+           // str = JSON.parse(str)
+        $.ajax({
+                url: '/api/homeTask/'+str , // url where to submit the request
+                type : "GET", // type of action POST || GET
+                data : str, // post data || get data
+                dataType : 'json',
+                contentType: "application/json; charset=utf-8",
+            success:function (result)
+                {
+                    console.log(result)
+                    result = JSON.parse(result)
+                    console.log(result)
+                    console.log("Pakistan I am here.")
+                }
+        });
+        });
+    });
+</script>
+</body>
+</html>

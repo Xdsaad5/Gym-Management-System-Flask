@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <link rel="stylesheet" href="/static/admin.css">
+    <link rel="stylesheet" href="/static/style.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    <!-- Font Awesome Iocns cdn link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+</head>
+<style>
+    .bg{
+        background-image: url("/static/image/img3.jpeg");
+        width: 100vw;
+        height: 100vh;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        position: relative;
+        backdrop-filter: blur(5px);
+    }
+</style>
+<body>
+<header style="background-color: black;" >
+        <div class="header" style="background-color: black">
+            <a href="#" class="logo"> <span>FIRE</span>HOUSE </a>
+            <nav class="navbar" >
+                <a href="/displayTrainer">Show Trainer</a>
+                <a href="/displayTrainee" >Show Trainee</a>
+                <a href="/removeTrainer">Remove Trainer</a>
+                <a href="/removeTrainee">Remove Trainee</a>
+                <a  href="/logoutAdmin">Logout</a>
+            </nav>
+        </div>
+</header>
+
+
+    <section class="home bg">
+        <div class="max-width" style="position: relative;top: 50px;right:50px">
+            <div class="home-content">
+                <h3 style="color: red">help for ideal <br> body fitness</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, numquam, sequi assumenda nam, vel nihil repudiandae omnis eveniet est excepturi atque molestias at dolores fugit!</p>
+            </div>
+        </div>
+    </section>
+<section class="service-sec background-image" id="services" >
+
+    <div class="row">
+
+        <div class="card" style="background:aquamarine;">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <h4>Add Equipments</h4>
+            <a href="/addEquipments" style="color: darkred">Go</a>
+        </div>
+        <div class="card" style="background-color: #9d370c;">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <h4>Add Food Supplements</h4>
+            <a href="/addFoodSupplements" style="color: darkred">Go</a>
+        </div>
+        <div class="card" style="background:rgb(177, 53, 53);">
+            <i class="fa-solid fa-headset"></i>
+            <h4>Remove Equipments</h4>
+            <a href="/deleteEquipments" style="color: darkred">Go</a>
+        </div>
+         <div class="card" style="background:rgb(177, 53, 53);">
+            <i class="fa-solid fa-headset"></i>
+            <h4>Remove Supplements</h4>
+            <a href="/deleteFoodSupplements" style="color: darkred">Go</a>
+        </div>
+    </div>
+</section>
+</body>
+</html>
+<!--
+<header class="">
+    <div class="header" style="background-color: black">
+        <a href="#" class="logo">
+            <i class="fas fa-dumbbell"></i><span style="color: red;position: relative;left:45px;bottom:40px">FireHouse</span>
+        </a>
+        <nav class="navbar" style="position: relative;right: 0px">
+            <a href="/removeTrainer">Remove Trainer</a>
+            <a href="/removeTrainee">Remove Trainee</a>
+            <a href="/displayTrainer">Show Trainer</a>
+            <a href="/displayTrainee" style="position: relative;right:170px;bottom:55px">Show Trainee</a>
+
+        </nav>
+        <a  style="font-size: 18px;color: white;position: relative;right:140px;bottom: 28px" href="/logoutAdmin">Logout</a>
+    </div>
+    </header>
+*/-->
